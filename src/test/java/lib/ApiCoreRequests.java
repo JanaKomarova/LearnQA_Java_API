@@ -38,4 +38,24 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("Edit user data")
+    public Response editUserDataWithoutLogin(String url, Map<String, String> editData ){
+        return   given()
+                .filter(new AllureRestAssured())
+                .body(editData)
+                .put(url)
+                .andReturn();
+    }
+
+    @Step("Edit user data")
+    public Response editUserData(String url, Map<String, String> editData, String header, String cookie ){
+        return   given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", header))
+                .cookie("auth_sid", cookie)
+                .body(editData)
+                .put(url)
+                .andReturn();
+    }
+
 }
