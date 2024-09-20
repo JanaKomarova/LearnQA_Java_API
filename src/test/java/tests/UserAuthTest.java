@@ -27,7 +27,7 @@ public class UserAuthTest extends BaseTestCase {
         Response responseGetAuth = RestAssured
                 .given()
                 .body(authData)
-                .post("https://playground.learnqa.ru/api/user/login")
+                .post("https://playground.learnqa.ru/api_dev/user/login")
                 .andReturn();
 
         this.cookie = this.getCookie(responseGetAuth, "auth_sid");
@@ -42,7 +42,7 @@ public class UserAuthTest extends BaseTestCase {
                 .given()
                 .header("x-csrf-token", this.header)
                 .cookie("auth_sid", this.cookie)
-                .get("https://playground.learnqa.ru/api/user/auth")
+                .get("https://playground.learnqa.ru/api_dev/user/auth")
                 .andReturn();
 
         Assertions.assertJsonByName(responstCheckAuth, "user_id", userUdOnAuth);
@@ -54,7 +54,7 @@ public class UserAuthTest extends BaseTestCase {
     public void testNegativeUserAuth(String condition) {
 
         RequestSpecification spec = RestAssured.given();
-        spec.baseUri("https://playground.learnqa.ru/api/user/auth");
+        spec.baseUri("https://playground.learnqa.ru/api_dev/user/auth");
 
         if (condition.equals("cookie")){
             spec.cookie("auth_sid", this.cookie);

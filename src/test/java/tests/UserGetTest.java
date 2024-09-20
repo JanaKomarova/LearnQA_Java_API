@@ -23,12 +23,12 @@ public class UserGetTest extends BaseTestCase {
         authData.put("email", "vinkotov@example.com");
         authData.put("password", "1234");
 
-        Response responseGetAuth = apiCoreRequests.userLogin("https://playground.learnqa.ru/api/user/login", authData);
+        Response responseGetAuth = apiCoreRequests.userLogin("https://playground.learnqa.ru/api_dev/user/login", authData);
 
         String header = this.getHeader(responseGetAuth, "x-csrf-token");
         String cookie = this.getCookie(responseGetAuth, "auth_sid");
 
-        Response responseUserData = apiCoreRequests.getUserData("https://playground.learnqa.ru/api/user/3",header, cookie);
+        Response responseUserData = apiCoreRequests.getUserData("https://playground.learnqa.ru/api_dev/user/3",header, cookie);
 
         Assertions.assertJsonHasField(responseUserData, "username");
         Assertions.assertJsonNotHasField(responseUserData,"firstName");

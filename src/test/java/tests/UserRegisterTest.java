@@ -26,7 +26,7 @@ public class UserRegisterTest extends BaseTestCase {
         userData.put("email",incorrectEmail);
         userData = DataGenerator.getRegistrationData(userData);
 
-        Response responseCreateAuthWithIncorrectEmail = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api/user", userData);
+        Response responseCreateAuthWithIncorrectEmail = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api_dev/user", userData);
 
         Assertions.assertResponseTextEquals(responseCreateAuthWithIncorrectEmail, "Invalid email format");
         Assertions.assertResponseCodeEquals(responseCreateAuthWithIncorrectEmail, 400);
@@ -62,7 +62,7 @@ public class UserRegisterTest extends BaseTestCase {
 
         userData = DataGenerator.getRegistrationData(userData);
 
-        Response responseCreateUserWithoutOneField = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api/user", userData);
+        Response responseCreateUserWithoutOneField = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api_dev/user", userData);
 
         Assertions.assertResponseTextEquals(responseCreateUserWithoutOneField, "The following required params are missed: "+condition);
         Assertions.assertResponseCodeEquals(responseCreateUserWithoutOneField, 400);
@@ -79,7 +79,7 @@ public class UserRegisterTest extends BaseTestCase {
         userData.put("username",shortUserName);
         userData = DataGenerator.getRegistrationData(userData);
 
-        Response responseCreateAuthWithIncorrectEmail = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api/user", userData);
+        Response responseCreateAuthWithIncorrectEmail = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api_dev/user", userData);
 
 
         Assertions.assertResponseTextEquals(responseCreateAuthWithIncorrectEmail, "The value of 'username' field is too short");
@@ -101,7 +101,7 @@ public class UserRegisterTest extends BaseTestCase {
         userData.put("username",longUserName);
         userData = DataGenerator.getRegistrationData(userData);
 
-        Response responseCreateAuthWithIncorrectEmail = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api/user", userData);
+        Response responseCreateAuthWithIncorrectEmail = apiCoreRequests.createUserRequest("https://playground.learnqa.ru/api_dev/user", userData);
 
         Assertions.assertResponseTextEquals(responseCreateAuthWithIncorrectEmail, "The value of 'username' field is too long");
         Assertions.assertResponseCodeEquals(responseCreateAuthWithIncorrectEmail, 400);
